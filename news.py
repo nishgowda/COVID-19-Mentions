@@ -7,7 +7,7 @@ class Covid_Tracker():
 
 	def __init__(self):
 		self.all_mentions = []
-		self.key = 't4IhXf8GakTGmg1VzX1jGRIdk21cWnpd'
+		self.key = 'Key'
 		self.file_name = ""
 		self.dir = ""
 
