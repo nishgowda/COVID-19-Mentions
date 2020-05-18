@@ -11,6 +11,7 @@ By fetching data from various news outlets, the program determines how many inst
 - json
 - sys
 - os
+- newsapi
 
 ### TO DO:
 - [ ] Access more news API's
