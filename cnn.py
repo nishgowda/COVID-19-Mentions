@@ -6,7 +6,7 @@ from newsapi import NewsApiClient
 
 class CNN():
 	def __init__(self):
-		self.key = '5cae8a19ef62424788815c036b9e2e44'
+		self.key = 'key'
 		self.all_mentions = []
 		self.file_name = ""
 		self.dir = ""
