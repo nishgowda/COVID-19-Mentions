@@ -3,11 +3,11 @@ import json
 import sys
 import os
 
-class Covid_Tracker():
+class NY_TIMES():
 
 	def __init__(self):
 		self.all_mentions = []
-		self.key = 'Key'
+		self.key = 't4IhXf8GakTGmg1VzX1jGRIdk21cWnpd'
 		self.file_name = ""
 		self.dir = ""
 
@@ -65,17 +65,18 @@ class Covid_Tracker():
 				desk = words['news_desk']
 				if 'COVID' in desk or 'Coronavirus' in desk:
 					self.all_mentions.append(desk)
+
 			num_months += 1
 		self.write_into_text(self.all_mentions)
 
 
 def main():
-	t = Covid_Tracker()
+	t = NY_TIMES()
 	t.file_name = sys.argv[1]
 	t.dir = sys.argv[2]
 	t.keywords()
 	t.mains()
-	t.news_desk()
+	#t.news_desk()
 	print("All mentions in the NY Times: " + len(t.all_mentions))
 
 main()
