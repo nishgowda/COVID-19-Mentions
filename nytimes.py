@@ -7,7 +7,7 @@ class NY_TIMES():
 
 	def __init__(self):
 		self.all_mentions = []
-		self.key = 'key'
+		self.key = 't4IhXf8GakTGmg1VzX1jGRIdk21cWnpd'
 		self.file_name = ""
 		self.dir = ""
 
@@ -51,7 +51,7 @@ class NY_TIMES():
 					self.all_mentions.append(main)
 			num_months+=1
 		self.write_into_text(self.all_mentions)
-	# ACCESS THE NY TIMES API TO TRAVERSE THROUGH THE NEWS DESK OF IDEADS OF ARCHIVED NY TIMES ARTICLE UP UNTIL THE CURRENT MONTH
+	# ACCESS THE NY TIMES API TO TRAVERSE THROUGH THE NEWS DESK OF IDEAS OF ARCHIVED NY TIMES ARTICLE UP UNTIL THE CURRENT MONTH
 	def news_desk(self):
 		print('...checking news desk')
 		self.all_mentions.append("NEWS DESK\n")
@@ -76,7 +76,7 @@ def main():
 	t.dir = sys.argv[2]
 	t.keywords()
 	t.mains()
-	#t.news_desk()
-	print("All mentions in the NY Times: " + len(t.all_mentions))
+	t.news_desk()
+	print("All mentions in the NY Times: " + str(len(t.all_mentions)))
 
 main()
