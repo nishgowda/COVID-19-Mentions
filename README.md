@@ -4,7 +4,7 @@ By fetching data from various news outlets, the program determines how many inst
 
 ### How to Run:
 - cd into directory
-- python3 news.py < text file > < directory name > (note the this directory will be made in the directory of your python file)
+- python3 news.py (or guardian.py) < text file name > < directory name > (note the this directory will be made in the directory of your python file)
 
 ### Dependencies
 - requests
