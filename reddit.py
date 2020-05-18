@@ -7,9 +7,9 @@ import praw
 class Reddit:
 	def __init__(self):
 		self.all_mentions=[]
-		self.client_id = 'K7pTKA1qeDOOQg'
-		self.client_secret= 'VfFFT1cLOEuaS9jnAl9wywEjdxs'
-		self.user_agent='Daily Sieve'
+		self.client_id = ''
+		self.client_secret= ''
+		self.user_agent=''
 		self.file_name = ''
 		self.dir = ''
 
