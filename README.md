@@ -15,4 +15,4 @@ By fetching data from various news outlets, the program determines how many inst
 
 ### TO DO:
 - [ ] Access more news API's
-- [ ] Increase request rate for NY Times
+- [X] Increase request rate for NY Times
