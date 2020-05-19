@@ -9,7 +9,7 @@ class NY_TIMES():
 
 	def __init__(self):
 		self.all_mentions = []
-		self.key = 't4IhXf8GakTGmg1VzX1jGRIdk21cWnpd'
+		self.key = ''
 		self.file_name = ""
 		self.dir = ""
 		self.current_date = datetime.datetime.now()
