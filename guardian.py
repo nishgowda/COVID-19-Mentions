@@ -5,8 +5,8 @@ import os
 
 class Guardian():
 	def __init__(self):
-		self.key = ''
-		self.mentions = []
+		self.key = 'eeade75e-0f7e-4e67-a641-0b17f7ca2b54'
+		self.all_mentions = []
 		self.num_articles = 0
 		self.file_name = ""
 		self.dir = ""
@@ -21,25 +21,20 @@ class Guardian():
 
 	def searches(self):
 		print('...checking all searches')
+		topics = ['coronavirus', 'covid-19']
+		while(len(topics) > 0):
+			topic = topics[0]
+			endpoint_url = f'http://content.guardianapis.com/search?q={topic}'
+			payload = {'api-key':              self.key, 'show-fields':          'all'}
+			r = requests.get(endpoint_url, params=payload)
+			articles = r.json()
+			self.num_articles += articles['response']['total']
+			for words in articles['response']['results']:
+				if words['webTitle'] not in self.all_mentions:
+					self.all_mentions.append(words['webTitle'])
+			topics.pop(0)
 
-		endpoint_url = f'http://content.guardianapis.com/search?q=coronavirus'
-		payload = {'api-key':              self.key, 'show-fields':          'all'}
-		r = requests.get(endpoint_url, params=payload)
-		articles = r.json()
-		self.num_articles += articles['response']['total']
-		self.mentions.append("Page Titles\n")
-		for words in articles['response']['results']:
-			self.mentions.append(words['webTitle'])
-		self.mentions.append("Page URLS\n")
-		for urls in articles['response']['results']:
-			self.mentions.append(words['webUrl'])
-		self.write_into_text(self.mentions)
-def main():
-	g = Guardian()
-	g.file_name = sys.argv[1]
-	g.dir = sys.argv[2]
-	g.searches()
-	print('There were a total of : ' + str(g.num_articles) + ' mentioned')
-main()
+		#self.write_into_text(self.all_mentions)
+
 
 

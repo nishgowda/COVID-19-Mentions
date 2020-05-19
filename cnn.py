@@ -3,10 +3,10 @@ import sys
 import json
 import os
 from newsapi import NewsApiClient
-
+import datetime  
 class CNN():
 	def __init__(self):
-		self.key = 'key'
+		self.key = '5cae8a19ef62424788815c036b9e2e44'
 		self.all_mentions = []
 		self.file_name = ""
 		self.dir = ""
@@ -21,27 +21,26 @@ class CNN():
 		print('Done') 
 
 	def everything(self):
-		print('...searching all off CNN')
+		current_date = datetime.datetime.now()
+		num_months = 0
+		print('...searching recent articles')
 		topics = ['Coronavirus', 'COVID-19', 'Pandemic']
 		newsapi = NewsApiClient(api_key=self.key)
 		while (len(topics) > 0):
 			topic = topics[0]
-			articles = newsapi.get_everything(q=f'{topic}',
-		                                          sources='CNN',
-		                                          from_param='2020-04-18',
-		                                          to='2020-05-18',
-		                                          language='en',)
-			for titles in articles['articles']:
-				self.all_mentions.append(titles['title'])
+			while(num_months < current_date.month):
+				to_date = f'{current_date.year}-0{current_date.month - num_months}-{current_date.day}'
+				from_date = f'{current_date.year}-0{current_date.month - 1}-{current_date.day}'
+				articles = newsapi.get_everything(q=f'{topic}',
+			                                          sources='CNN',
+			                                          from_param=f'{from_date}',
+			                                          to=f'{to_date}',
+			                                          language='en',)
+				for titles in articles['articles']:
+					if titles['title'] not in self.all_mentions:
+						self.all_mentions.append(titles['title'])
+				num_months+=1
 			topics.pop(0)
-		self.write_into_text(self.all_mentions)
+		#self.write_into_text(self.all_mentions)
 
-def main():
-	cnn = CNN()
-	cnn.file_name = sys.argv[1]
-	cnn.dir = sys.argv[2]
-	cnn.everything()
-	print('Total mentions: ' + str(len(cnn.all_mentions)))
-	print('Saved content to  ' + cnn.file_name + ' at ' + cnn.dir)
 
-main()
