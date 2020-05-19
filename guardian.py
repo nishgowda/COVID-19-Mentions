@@ -5,7 +5,7 @@ import os
 
 class Guardian():
 	def __init__(self):
-		self.key = 'eeade75e-0f7e-4e67-a641-0b17f7ca2b54'
+		self.key = ''
 		self.all_mentions = []
 		self.num_articles = 0
 		self.file_name = ""
