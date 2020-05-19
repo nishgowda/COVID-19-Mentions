@@ -8,8 +8,12 @@ from reddit import Reddit
 from wsj import WSJ
 from progress.bar import Bar
 import time
+import matplotlib.pyplot as plt
+
 class News:
 	def __init__(self):
+		self.data = []
+		self.data_labels = []
 		self.total_mentions = []
 		self.application = ''
 		self.file_name = ''
@@ -59,6 +63,13 @@ class News:
 			print('The Guardian had ' + str(len(guardian.all_mentions)) + ' mentions')
 			print('Reddit had ' + str(len(reddit.all_mentions)) + ' mentions')
 			print('The Wall Street Jornal had ' + str(len(wsj.all_mentions)) + ' mentions')
+			print('...Generating your model')
+			self.data = [len(nytimes.all_mentions), len(cnn.all_mentions), len(guardian.all_mentions) , len(reddit.all_mentions) , len(wsj.all_mentions)]
+			self.data_labels = ['The New York Times', 'CNN', 'The Guardian', 'Reddit', 'The Wall Street Journal']
+			plt.pie(self.data, labels = self.data_labels, autopct = '%1.1f%%')
+			plt.title('COVID-19 Mentions')
+			plt.axis('equal')
+			plt.show()
 		elif self.application == 'nytimes':
 			nytimes.keywords()
 			nytimes.mains()
@@ -85,6 +96,11 @@ class News:
 			print('The Wall Street Journal had ' + str(len(wsj.all_mentions)) + ' mentions')
 		else:
 			print('Not a valid option')
+
+
+
+
+
 
 
 if __name__ == "__main__":
