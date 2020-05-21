@@ -15,7 +15,7 @@ By fetching data from various news outlets, the program determines how many inst
 
 ### The Results:
 After the program executes through all the media outlets available, the following percentage model was created. From this data, we can see that The Guardian accumulated more than 70% of mentions in the media from January to this day (5/19/20). It is important to note however, that this data is obvioulsy not a 100% accurate representation of what's being mentioned in the news. Due to limitations with several API's and the sheer number of articles to search through, the results will obviously not account for all mentions of COVID-19 related topics. 
-![Covid-19-Mentions-Figures](https://github.com/nishgowda/COVID-19-Mentions/blob/master/Covid-19-Mentions-Figures.png
+![Covid-Mentions](https://github.com/nishgowda/COVID-19-Mentions/blob/master/Covid-19-Mentions-Figures.png
 ### TO DO:
 - [X] Access more news API's
 - [X] Increase request rate for NY Times
