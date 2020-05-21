@@ -24,9 +24,9 @@ class News:
 		if not os.path.exists(path):
 			os.makedirs(path)
 		filename = self.file_name + '.txt'
-		bar = Bar('Writing into Text', max = 100)
+		bar = Bar('Writing into Text', max = 100, suffix='%(percent)d%%')
 		for i in range(100):
-			with open(os.path.join(path, filename), 'a') as temp_file:
+			with open(os.path.join(path, filename), 'w+') as temp_file:
 				time.sleep(0.1)
 				temp_file.write(str(text))
 			bar.next()
@@ -42,9 +42,10 @@ class News:
 		wsj = WSJ()
 		if self.application == 'all':
 			print('...searching The New York Times')
+			nytimes.search()
 			nytimes.keywords()
 			nytimes.mains()
-			nytimes.news_desk()
+			nytimes.top_stories()
 			self.write_into_text(nytimes.all_mentions)
 			print('...searching CNN')
 			cnn.everything()
@@ -75,10 +76,10 @@ class News:
 			plt.axis('equal')
 			plt.show()
 		elif self.application == 'nytimes':
-			nytimes.search()
-			nytimes.keywords()
-			nytimes.mains()
-			nytimes.news_desk()
+			#nytimes.search()
+			#nytimes.keywords()
+			#nytimes.mains()
+			nytimes.top_stories()
 			self.write_into_text(nytimes.all_mentions)
 			self.total_mentions = nytimes.total_mentions
 			print('The New York Times had ' + str(nytimes.total_mentions) + ' mentions')

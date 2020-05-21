@@ -7,9 +7,9 @@ import praw
 class Reddit:
 	def __init__(self):
 		self.all_mentions=[]
-		self.client_id = 'client_id'
-		self.client_secret= 'client_secret'
-		self.user_agent='user_agent'
+		self.client_id = 'K7pTKA1qeDOOQg'
+		self.client_secret= 'VfFFT1cLOEuaS9jnAl9wywEjdxs'
+		self.user_agent='Daily Sieve'
 		self.file_name = ''
 		self.dir = ''
 		self.reddit = praw.Reddit(client_id=self.client_id,client_secret=self.client_secret,user_agent=self.user_agent)
@@ -26,7 +26,7 @@ class Reddit:
 	def aggregate_submissions(self):
 		print('...checking submissions')
 
-		topics = ['Coronavirus', 'COVID19']
+		topics = ['Coronavirus', 'COVID19','COVID','COVID19positive']
 		while(len(topics) > 0):
 			topic = topics[0]
 			subreddit = self.reddit.subreddit(str(topic))
@@ -37,7 +37,7 @@ class Reddit:
 
 	def aggregate_comments(self):
 		print('...checking comments')
-		topics = ['Coronavirus', 'COVID19']
+		topics = ['Coronavirus', 'COVID19','COVID','COVID19positive']
 		while(len(topics) > 0):
 			topic = topics[0]
 			subreddit = self.reddit.subreddit(str(topic))

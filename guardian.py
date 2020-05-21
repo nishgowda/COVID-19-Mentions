@@ -5,7 +5,7 @@ import os
 import datetime
 class Guardian():
 	def __init__(self):
-		self.key = 'key'
+		self.key = 'eeade75e-0f7e-4e67-a641-0b17f7ca2b54'
 		self.all_mentions = []
 		self.num_articles = 0
 		self.file_name = ""

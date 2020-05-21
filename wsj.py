@@ -7,7 +7,7 @@ import datetime
 class WSJ():
 
     def __init__(self):
-        self.key = ''
+        self.key = '5cae8a19ef62424788815c036b9e2e44'
         self.all_mentions = []
         self.file_name = ""
         self.dir = ""
