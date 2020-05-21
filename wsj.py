@@ -3,11 +3,11 @@ import sys
 import json
 import os
 from newsapi import NewsApiClient
-import datetime  
+import datetime
 class WSJ():
 
     def __init__(self):
-        self.key = ''
+        self.key = '5cae8a19ef62424788815c036b9e2e44'
         self.all_mentions = []
         self.file_name = ""
         self.dir = ""
@@ -19,19 +19,19 @@ class WSJ():
         filename = self.file_name + '.txt'
         with open(os.path.join(path, filename), 'w+') as temp_file:
             temp_file.write(str(text))
-        print('Done') 
-
+        print('Done')
+# Gathering all the searches from the WSJ through the NewsAPI
     def everything(self):
         current_date = datetime.datetime.now()
         num_months = 0
         print('...searching recent articles')
-        topics = ['Coronavirus', 'COVID-19', 'Pandemic']
+        topics = ['Coronavirus', 'COVID-19', 'Pandemic','Social Distancing']
         newsapi = NewsApiClient(api_key=self.key)
         while (len(topics) > 0):
             topic = topics[0]
             while(num_months < current_date.month):
                 to_date = f'{current_date.year}-0{current_date.month - num_months}-{current_date.day}'
-                from_date = f'{current_date.year}-0{current_date.month - 1}-{current_date.day}'
+                from_date = f'{current_date.year}-0{current_date.month - 1}-{current_date.day +1}'
                 articles = newsapi.get_everything(q=f'{topic}',
                                                       sources='The-Wall-Street-Journal',
                                                       from_param=f'{from_date}',

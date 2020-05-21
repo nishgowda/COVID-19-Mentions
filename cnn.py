@@ -6,7 +6,7 @@ from newsapi import NewsApiClient
 import datetime  
 class CNN():
 	def __init__(self):
-		self.key = ''
+		self.key = '5cae8a19ef62424788815c036b9e2e44'
 		self.all_mentions = []
 		self.file_name = ""
 		self.dir = ""
@@ -19,18 +19,18 @@ class CNN():
 		with open(os.path.join(path, filename), 'w+') as temp_file:
 			temp_file.write(str(text))
 		print('Done') 
-
+# Searching through the available CNN articles related to COVID-19
 	def everything(self):
 		current_date = datetime.datetime.now()
 		num_months = 0
 		print('...searching recent articles')
-		topics = ['Coronavirus', 'COVID-19', 'Pandemic']
+		topics = ['Coronavirus', 'COVID-19', 'Pandemic','Social Distancing']
 		newsapi = NewsApiClient(api_key=self.key)
 		while (len(topics) > 0):
 			topic = topics[0]
 			while(num_months < current_date.month):
 				to_date = f'{current_date.year}-0{current_date.month - num_months}-{current_date.day}'
-				from_date = f'{current_date.year}-0{current_date.month - 1}-{current_date.day}'
+				from_date = f'{current_date.year}-0{current_date.month - 1}-{current_date.day + 1}'
 				articles = newsapi.get_everything(q=f'{topic}',
 			                                          sources='CNN',
 			                                          from_param=f'{from_date}',

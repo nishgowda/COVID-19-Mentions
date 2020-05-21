@@ -2,14 +2,15 @@ import requests
 import json
 import sys
 import os
-import datetime 
+import datetime
 from progress.bar import Bar
 import time
 class NY_TIMES():
 
 	def __init__(self):
 		self.all_mentions = []
-		self.key = ''
+		self.total_mentions = 0
+		self.key = 't4IhXf8GakTGmg1VzX1jGRIdk21cWnpd'
 		self.file_name = ""
 		self.dir = ""
 		self.current_date = datetime.datetime.now()
@@ -42,7 +43,29 @@ class NY_TIMES():
 				if 'COVID' in words['value'] or 'Coronavirus' in words['value']:
 					if words['value'] not in self.all_mentions:
 						self.all_mentions.append(words['value'])
+
 			num_months+=1
+		self.total_mentions += len(self.all_mentions)
+
+
+	def search(self):
+		print('...searching')
+		begin_date = '20200101'
+		end_date = datetime.datetime.now()
+		topics = ['Coronavirus', 'Covid-19', 'Social Distancing']
+		while(len(topics) > 0):
+			topic = topics[0]
+			endpoint_url = f'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key={self.key}'
+			payload = {'begin_date':begin_date, 'end_date':end_date, 'f1':topic}
+			response = requests.get(endpoint_url, params=payload)
+			articles = response.json()
+			num_articles = 0
+			for words in articles['response']['docs']:
+				self.all_mentions.append(words['news_desk'])
+				num_articles += len(words)
+			topics.pop(0)
+		self.total_mentions += num_articles
+
 
 		#self.write_into_text(self.all_mentions)
 	# ACCESS THE NY TIMES API TO TRAVERSE THROUGH THE MAIN HEADLINES OF ARCHIVED NY TIMES ARTICLE UP UNTIL THE CURRENT MONTH
@@ -53,13 +76,14 @@ class NY_TIMES():
 			endpoint_url = f'https://api.nytimes.com/svc/archive/v1/2020/{num_months}.json?api-key={self.key}'
 			r = requests.get(endpoint_url)
 			articles = r.json()
-			
+
 			for words in articles['response']['docs']:
 				main = (words['headline']['main'])
 				if 'COVID' in main or 'Coronavirus' in main:
-					if main not in self.all_mentions: 
+					if main not in self.all_mentions:
 						self.all_mentions.append(main)
 			num_months+=1
+		self.total_mentions += len(self.all_mentions)
 		#self.write_into_text(self.all_mentions)
 	# ACCESS THE NY TIMES API TO TRAVERSE THROUGH THE NEWS DESK OF IDEAS OF ARCHIVED NY TIMES ARTICLE UP UNTIL THE CURRENT MONTH
 	def news_desk(self):
@@ -75,6 +99,9 @@ class NY_TIMES():
 				if 'COVID' in desk or 'Coronavirus' in desk:
 					if desk not in self.all_mentions:
 						self.all_mentions.append(desk)
-			num_months += 1
-		#self.write_into_text(self.all_mentions)
 
+			num_months += 1
+		self.total_mentions += len(self.all_mentions)
+
+
+		#self.write_into_text(self.all_mentions)

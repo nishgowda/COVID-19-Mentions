@@ -7,12 +7,13 @@ import praw
 class Reddit:
 	def __init__(self):
 		self.all_mentions=[]
-		self.client_id = ''
-		self.client_secret= ''
-		self.user_agent=''
+		self.client_id = 'K7pTKA1qeDOOQg'
+		self.client_secret= 'VfFFT1cLOEuaS9jnAl9wywEjdxs'
+		self.user_agent='Daily Sieve'
 		self.file_name = ''
 		self.dir = ''
 		self.reddit = praw.Reddit(client_id=self.client_id,client_secret=self.client_secret,user_agent=self.user_agent)
+		self.total_mentions =0
 	def write_into_text(self, text):
 		path = self.dir
 		if not os.path.exists(path):
@@ -21,7 +22,7 @@ class Reddit:
 		with open(os.path.join(path, filename), 'w+') as temp_file:
 			temp_file.write(str(text))
 		print('Done')
-	
+# Gathering all the subissions from reddit and appending all mentions of COVID-19 in various subreddits to all_mentions
 	def aggregate_submissions(self):
 		print('...checking submissions')
 
@@ -29,7 +30,6 @@ class Reddit:
 		while(len(topics) > 0):
 			topic = topics[0]
 			subreddit = self.reddit.subreddit(str(topic))
-
 			for submission in subreddit.top():
 				if submission.title not in self.all_mentions:
 					self.all_mentions.append(submission.title)
@@ -41,11 +41,8 @@ class Reddit:
 		while(len(topics) > 0):
 			topic = topics[0]
 			subreddit = self.reddit.subreddit(str(topic))
-			for subreds in subreddit.top():
-				submissions = self.reddit.submission(subreds.id)
-				submissions.comments.replace_more(limit=0)
-				for comment in submissions.comments:
-					if 'COVID' in comment.body or 'Coronavirus' in comment.body:
-						self.all_mentions.append(comment.body)
+			for comment in subreddit.comments(limit=None):
+				self.all_mentions.append(comment.body)
 			topics.pop(0)
+
 		#self.write_into_text(self.all_mentions)
