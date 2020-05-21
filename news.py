@@ -26,7 +26,7 @@ class News:
 		filename = self.file_name + '.txt'
 		bar = Bar('Writing into Text', max = 100, suffix='%(percent)d%%')
 		for i in range(100):
-			with open(os.path.join(path, filename), 'w+') as temp_file:
+			with open(os.path.join(path, filename), 'a') as temp_file:
 				time.sleep(0.1)
 				temp_file.write(str(text))
 			bar.next()
