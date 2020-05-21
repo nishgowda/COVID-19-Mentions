@@ -76,9 +76,9 @@ class News:
 			plt.axis('equal')
 			plt.show()
 		elif self.application == 'nytimes':
-			#nytimes.search()
-			#nytimes.keywords()
-			#nytimes.mains()
+			nytimes.search()
+			nytimes.keywords()
+			nytimes.mains()
 			nytimes.top_stories()
 			self.write_into_text(nytimes.all_mentions)
 			self.total_mentions = nytimes.total_mentions
