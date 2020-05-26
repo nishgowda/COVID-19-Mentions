@@ -12,7 +12,7 @@ Example:
 Command Line Arguments:
  - The news media you wish to scrape:
 ```
-- all : traverse through all the available news outlets
+    - all : traverse through all the available news outlets
     - nytimes : traverse the data for just The New York Times
     - guardian : traverse the data for just The Guardian
     - reddit : traverse the data for just Reddit
