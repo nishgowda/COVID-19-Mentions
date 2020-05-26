@@ -4,8 +4,23 @@ By fetching data from various news outlets, the program determines how many inst
 ### How to Run:
 - You must have valid credentials for these select API's : NY Times, The Guardian, Reddit, and the News API. These can be found on their websites, just create an account and replace the credentials with yours. Be aware, that if you run the program with the NY Times model, then it will not work. This is because they place a limit on the number of requests you can make per minute. To solve this, just email them with a request to increase this rate. Also please note that if you run this while writing the content to your local text file, it will be a VERY large file. 
 - cd into directory
-- python3 news.py < news outlet > < file name > < directory name > (note this directory will be made in the directory of your python file)
-
+## Usage
+Example:
+```python
+  python3 news.py all corona_data ALL_Outlets
+```
+Command Line Arguments:
+ - The news media you wish to scrape:
+```
+- all : traverse through all the available news outlets
+    - nytimes : traverse the data for just The New York Times
+    - guardian : traverse the data for just The Guardian
+    - reddit : traverse the data for just Reddit
+    - wsj : traverse the data for just The Wall Street Journal
+    - cnn: traverse the data for just CNN
+```
+- The text file you want to write into 
+- The directory for your text file (this directory will be placed in the directory of your python file)
 ### Dependencies/Requirments: 
 - requests
 - sys
